@@ -1,7 +1,4 @@
-
---------------------------------------
 # 2. GitHub 定时配置 .github/workflows/daily.yml
-```yaml
 name: 每日7点天气推送
 
 on:
