@@ -1,0 +1,26 @@
+
+--------------------------------------
+# 2. GitHub 定时配置 .github/workflows/daily.yml
+```yaml
+name: 每日7点天气推送
+
+on:
+  schedule:
+    - cron: "0 23 * * *"   # 北京时间7点
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: 安装依赖
+        run: pip install requests
+      - name: 执行脚本
+        env:
+          PUSH_KEY: ${{ secrets.PUSH_KEY }}
+          CITY: "成都"   # 改成你想要的城市
+        run: python main.py
